@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp( MainApp());
+  runApp(MainApp());
 }
 
 class MainApp extends StatelessWidget {
@@ -9,13 +9,13 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(título: text("Exemplo Colunas(Column)linhas (row)"))
+        appBar: AppBar(title: Text("Exemplo Colunas (Column) e Linhas (Row)")),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center, //vertical
-          crossAxisAlignment: ,
-          child: Text('Hello World!'),
+          crossAxisAlignment: CrossAxisAlignment.center, //horizontal
+          children: [Text('Hello World!')],
         ),
       ),
     );
