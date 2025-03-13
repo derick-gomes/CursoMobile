@@ -1,20 +1,18 @@
+import 'package:exemplo_widgets_interacao/widgets%20interacao.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(MainApp());
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
-    );
+  Widgetsinteracao createState() => Widgetsinteracao();
+}
+
+class widgetsinteracaoState extends State<widgetsinteracao>{
+  @override
+  widget build(BuildContext context) {
+    return Scaffold()
   }
 }
