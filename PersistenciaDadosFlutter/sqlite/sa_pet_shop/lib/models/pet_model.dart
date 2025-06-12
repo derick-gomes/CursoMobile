@@ -16,7 +16,7 @@ class Pet{
     required this.telefoneDono
   });
 
-  //métodos do conversão -> obg-> BD : BD->obj
+  //métodos do conversão -> obj-> BD : BD->obj
 
   Map<String,dynamic> toMap(){
     return{
@@ -31,10 +31,10 @@ class Pet{
   factory Pet.fromMap(Map<String,dynamic> map) {
     return Pet(
       id:map["id"] as int,
-      nome: map["nome"], as String,
-      raca: map["raca"], as String,
-      nomeDono: map["nome_dono"], 
-      telefoneDono: map["telefone_dono"]);
+      nome: map["nome"] as String, 
+      raca: map["raca"] as String, 
+      nomeDono: map["nome_dono"] as String, 
+      telefoneDono: map["telefone_dono"] as String);
   }
 
 }

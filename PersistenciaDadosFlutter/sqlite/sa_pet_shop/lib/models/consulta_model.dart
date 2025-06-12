@@ -38,6 +38,8 @@ class Consulta {
       observacao: map["observacao"] as String?); //pode ser nulo
   }
 
+  String get dataHoraFormatada => null;
+
   // método formatar data e hora em formato Brasil
 
 }
