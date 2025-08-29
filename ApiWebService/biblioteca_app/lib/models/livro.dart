@@ -1,4 +1,4 @@
-/// Modelo de dados para um Livro
+// atributos
 class Livro {
 	final int id;
 	final String titulo;
@@ -8,6 +8,8 @@ class Livro {
 	final String isbn;
 	final int quantidade;
 
+
+  //construtor
 	Livro({
 		required this.id,
 		required this.titulo,
@@ -18,6 +20,7 @@ class Livro {
 		required this.quantidade,
 	});
 
+  //FromMap
 	factory Livro.fromJson(Map<String, dynamic> json) {
 		return Livro(
 			id: json['id'],
@@ -30,6 +33,7 @@ class Livro {
 		);
 	}
 
+  //ToMap
 	Map<String, dynamic> toJson() {
 		return {
 			'id': id,
