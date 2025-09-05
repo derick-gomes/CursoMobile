@@ -17,6 +17,3 @@ class Usuario {
     email: json["email"].toString(),
   );
 }
-
-
-

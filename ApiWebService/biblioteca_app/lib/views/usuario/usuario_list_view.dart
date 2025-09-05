@@ -1,5 +1,5 @@
-import 'package:biblioteca_app/controllers/user_controller.dart';
-import 'package:biblioteca_app/models/user.dart';
+import 'package:biblioteca_app/controllers/usuario_controller.dart';
+import 'package:biblioteca_app/models/usuario.dart';
 import 'package:biblioteca_app/views/usuario/usuario_form_view.dart';
 import 'package:flutter/material.dart';
 

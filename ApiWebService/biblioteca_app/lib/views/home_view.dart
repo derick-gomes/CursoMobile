@@ -1,3 +1,5 @@
+import 'package:biblioteca_app/views/emprestimo/emprestimo_list_view.dart';
+import 'package:biblioteca_app/views/livro/livro_list_view.dart';
 import 'package:biblioteca_app/views/usuario/usuario_list_view.dart';
 import 'package:flutter/material.dart';
 
@@ -34,10 +36,4 @@ class _HomeViewState extends State<HomeView> {
         ]),
     );
   }
-  
-  // ignore: non_constant_identifier_names
-  static LivroListView() {}
-  
-  // ignore: non_constant_identifier_names
-  static EmprestimoListView() {}
 }
