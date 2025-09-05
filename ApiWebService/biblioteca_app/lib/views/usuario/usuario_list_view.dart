@@ -1,5 +1,5 @@
-import 'package:biblioteca_app/controllers/usuario_controller.dart';
-import 'package:biblioteca_app/models/usuario.dart';
+import 'package:biblioteca_app/controllers/user_controller.dart';
+import 'package:biblioteca_app/models/user.dart';
 import 'package:biblioteca_app/views/usuario/usuario_form_view.dart';
 import 'package:flutter/material.dart';
 
@@ -12,12 +12,13 @@ class UsuarioListView extends StatefulWidget {
 
 class _UsuarioListViewState extends State<UsuarioListView> {
   //atributos
-  final _controller = UsuarioController(); // chmar os controller 
+  final _controller = UsuarioController(); // chamar os controller 
   List<Usuario> _usuarios = [];
   bool _loading = true;
   List<Usuario> _filtroUsuario = []; //lista para filtrar usuários por algum critério
   final _buscaField = TextEditingController(); //pegar o texto da busca
 
+  @override
   @override
   void initState() {
     super.initState();
@@ -39,8 +40,8 @@ class _UsuarioListViewState extends State<UsuarioListView> {
     final busca = _buscaField.text.toLowerCase();
     setState(() {
       _filtroUsuario = _usuarios.where((user) {
-        return user.nome.toLowerCase().contains(busca) || //filtra pelo nome
-        user.email.toLowerCase().contains(busca); //filtra pelo email
+        return (user.nome?.toLowerCase().contains(busca) ?? false) || //filtra pelo nome
+        (user.email?.toLowerCase().contains(busca) ?? false); //filtra pelo email
       }).toList(); //converte em lista
     });
   }
