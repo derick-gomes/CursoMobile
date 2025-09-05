@@ -23,6 +23,7 @@ class _UsuarioListViewState extends State<UsuarioListView> {
   void initState() {
     super.initState();
     _load();
+    
   }
 
   void _load() async{
