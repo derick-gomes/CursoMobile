@@ -14,16 +14,19 @@ class _RegistroViewState extends State<RegistroView> {
   final _emailField = TextEditingController();
   final _senhaField = TextEditingController();
   final _confirmarSenhaField = TextEditingController();
+  bool _ocultarSenha = true;
+  bool _ocultarConfirmarSenha = true;
 
-
+  //método para registrar novo usuário
   void _registrar() async{
     if(_senhaField.text != _confirmarSenhaField.text) return;
     try {
       await _auth.createUserWithEmailAndPassword(
         email: _emailField.text.trim(), 
         password: _senhaField.text);
-      // após o registro , u usuário já é logado no sistema 
+      // após o registro , o usuário já é logado no sistema 
       // AuthView -> Joga ele pra tela de Tarefas
+      Navigator.pop(context); //Fecha a Tela de Registro
     } on FirebaseAuthException catch (e) { //erro especificos do FirebaseAuth
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Erro ao Registrar: $e"))
@@ -44,15 +47,27 @@ class _RegistroViewState extends State<RegistroView> {
               decoration: InputDecoration(labelText: "Email"),
               keyboardType: TextInputType.emailAddress,
             ),
-            TextField(
+            TextField( //adicionar o olho de ver senha
               controller: _senhaField,
-              decoration: InputDecoration(labelText: "Senha"),
-              obscureText: true,
+              decoration: InputDecoration(
+                labelText: "Senha",
+                suffix: IconButton(
+                  onPressed: ()=>setState(() {
+                    _ocultarSenha = !_ocultarSenha;
+                  }), 
+                  icon: Icon(_ocultarSenha ? Icons.visibility : Icons.visibility_off))),
+              obscureText: _ocultarSenha, // oculta a senha quando digitada
             ),
             TextField(
               controller: _confirmarSenhaField,
-              decoration: InputDecoration(labelText: "Senha"),
-              obscureText: true,
+              decoration: InputDecoration(
+                labelText: "Confirmar Senha",
+                suffix: IconButton(
+                  onPressed: ()=>setState(() {
+                    _ocultarConfirmarSenha = !_ocultarConfirmarSenha;
+                  }), 
+                  icon: Icon(_ocultarConfirmarSenha ? Icons.visibility : Icons.visibility_off))),
+              obscureText: _ocultarConfirmarSenha, // oculta a senha quando digitada
             ),
             SizedBox(height: 20,),
             _senhaField.text != _confirmarSenhaField.text 
