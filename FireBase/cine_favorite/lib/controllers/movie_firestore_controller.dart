@@ -10,7 +10,7 @@ import 'package:path_provider/path_provider.dart';
 
 class MovieFirestoreController {
   //atributos
-  final _auth = FirebaseAuth.instance;
+  final _auth = FirebaseAuth.instance; //constroller do firebase 
   final _db = FirebaseFirestore.instance;
 
   //criar um método para pegar o usuário logado
@@ -52,16 +52,39 @@ class MovieFirestoreController {
     final movie = Movie(
       id: movieData["id"], 
       title: movieData["title"], 
-      posterPath: file.toString());
+      posterPath: file.path.toString());
     
     //adicionar o filme no firestore
     await _db
     .collection("usuarios")
     .doc(currentUser!.uid)
     .collection("favorite_movies")
-    .doc(movie.id.toString())
+    .doc(movie.id.toString()) //cio um obj com o ID igual ao ID do TMDB
     .set(movie.toMap());
+  }
 
+  //delete
+  void removeFavoriteMovie(int movieId) async{
+    await _db.collection("usuarios").doc(currentUser!.uid)
+    .collection("favorite_movies").doc(movieId.toString()).delete();
+    //deleta o filme da lista e favoritos a partir do ID do Filme
+
+    // deletar a imagem o filme
+    final imagemPath = await getApplicationDocumentsDirectory();
+    final imagemFile = File("${imagemPath.path}/#movieId.jpg");
+    try {
+      await imagemFile.delete();
+    } catch (e) {
+      // ignore: avoid_print
+      print("Erro ao deletar imagem: $e");
+    }
+  }
+
+  //update (modificar a nota)
+  void updateMovieRating(int movieId, double rating) async{
+    await _db.collection("usuarios").doc(currentUser!.uid)
+    .collection("favorite_movies").doc(movieId.toString())
+    .update({'rating': rating});
   }
 
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class RegistroView extends StatefulWidget {
-  const RegistroView({Key? key}) : super(key: key);
+  const RegistroView({super.key});
 
   @override
   State<RegistroView> createState() => _RegistroViewState();
